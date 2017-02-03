@@ -16,29 +16,29 @@ class PopoverViewController: UIViewController, UIPopoverPresentationControllerDe
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func actionWasTapped(sender: UIBarButtonItem) {
+    @IBAction func actionWasTapped(_ sender: UIBarButtonItem) {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("PopoverViewController") as! UIViewController
-        vc.modalPresentationStyle = UIModalPresentationStyle.Popover
+        let vc = storyboard.instantiateViewController(withIdentifier: "PopoverViewController") 
+        vc.modalPresentationStyle = UIModalPresentationStyle.popover
         let popover: UIPopoverPresentationController = vc.popoverPresentationController!
         popover.barButtonItem = sender
         popover.delegate = self
-        presentViewController(vc, animated: true, completion:nil)
+        present(vc, animated: true, completion:nil)
     }
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.FullScreen
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.fullScreen
 //        return UIModalPresentationStyle.None
     }
     
-    func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+    func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
         let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
-        let btnDone = UIBarButtonItem(title: "Done", style: .Done, target: self, action: "dismiss")
-        navigationController.topViewController.navigationItem.rightBarButtonItem = btnDone
+        let btnDone = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(PopoverViewController.dismiss as (PopoverViewController) -> () -> ()))
+        navigationController.topViewController?.navigationItem.rightBarButtonItem = btnDone
         return navigationController
     }
     
     func dismiss() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }
