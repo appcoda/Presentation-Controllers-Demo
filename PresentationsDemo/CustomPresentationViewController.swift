@@ -18,10 +18,10 @@ class CustomPresentationViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func infoButtonWasTapped(sender: UIButton) {
+    @IBAction func infoButtonWasTapped(_ sender: UIButton) {
         transitioningDelegate = exampleTransitionDelegate
-        var vc = ExampleViewController()
+        let vc = ExampleViewController()
         vc.transitioningDelegate = exampleTransitionDelegate
-        presentViewController(vc, animated: true, completion: nil)
+        present(vc, animated: true, completion: nil)
     }
 }

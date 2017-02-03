@@ -16,24 +16,24 @@ class AlertViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func showAlertWasTapped(sender: UIButton) {
+    @IBAction func showAlertWasTapped(_ sender: UIButton) {
         
-        let alertController = UIAlertController(title: "Appcoda", message: "Message in alert dialog", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let alertController = UIAlertController(title: "Appcoda", message: "Message in alert dialog", preferredStyle: UIAlertControllerStyle.actionSheet)
         
-        let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.Destructive, handler: {(alert :UIAlertAction!) in
-            println("Delete button tapped")
+        let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive, handler: {(alert :UIAlertAction!) in
+            print("Delete button tapped")
         })
         alertController.addAction(deleteAction)
         
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
-            println("OK button tapped")
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(alert :UIAlertAction!) in
+            print("OK button tapped")
         })
         alertController.addAction(okAction)
         
         alertController.popoverPresentationController?.sourceView = view
         alertController.popoverPresentationController?.sourceRect = sender.frame
         
-        presentViewController(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
         
     }
 }

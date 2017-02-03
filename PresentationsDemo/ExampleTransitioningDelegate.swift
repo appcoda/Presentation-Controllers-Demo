@@ -10,20 +10,20 @@ import UIKit
 
 class ExampleTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
     
-    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController!, sourceViewController source: UIViewController) -> UIPresentationController? {
-        let presentationController = ExamplePresentationController(presentedViewController:presented, presentingViewController:presenting)
+    private func presentationController(forPresented presented: UIViewController, presenting: UIViewController??, source: UIViewController) -> UIPresentationController? {
+        let presentationController = ExamplePresentationController(presentedViewController:presented, presenting:presenting!)
     
         return presentationController
     }
     
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        var animationController = ExampleAnimatedTransitioning()
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let animationController = ExampleAnimatedTransitioning()
         animationController.isPresentation = true
         return animationController
     }
     
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        var animationController = ExampleAnimatedTransitioning()
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let animationController = ExampleAnimatedTransitioning()
         animationController.isPresentation = false
         return animationController
     }
